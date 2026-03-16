@@ -5,13 +5,13 @@
 class Rioni < Formula
   desc "Rioni is a free and open-source DNS proxy server."
   homepage "https://github.com/AndreySenov/rioni"
-  version "1.0.1"
+  version "1.0.2"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.1/rioni-1.0.1-darwin-x86_64.tar.gz"
-      sha256 "36072e2a3112f5e2248d25c63b2eaccbf5f6d3496753935c45fd2daeec075f53"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.2/rioni-1.0.2-darwin-x86_64.tar.gz"
+      sha256 "12e20d2be2d9c889438a4c03c13badd2963b4891a1253f6cd396d696d58da06f"
 
       define_method(:install) do
         bin.install "rioni"
@@ -19,13 +19,13 @@ class Rioni < Formula
         doc.install "README.md"
         doc.install "NOTICE"
         doc.install "LICENSE"
-        doc.install Dir["licenses/*"]
-        doc.install Dir["docs/*"]
+        (doc/"licenses").install Dir["licenses/*"]
+        (doc/"docs").install Dir["docs/*"]
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.1/rioni-1.0.1-darwin-arm64.tar.gz"
-      sha256 "005057ad274f610a4a70d62a35422f44f670a002877c4b80983b0d89f5a011cd"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.2/rioni-1.0.2-darwin-arm64.tar.gz"
+      sha256 "d4b0896f7dc27984442c9728f43e257f991dabf6c7244cdd958cc74c48d6c8d0"
 
       define_method(:install) do
         bin.install "rioni"
@@ -33,37 +33,37 @@ class Rioni < Formula
         doc.install "README.md"
         doc.install "NOTICE"
         doc.install "LICENSE"
-        doc.install Dir["licenses/*"]
-        doc.install Dir["docs/*"]
+        (doc/"licenses").install Dir["licenses/*"]
+        (doc/"docs").install Dir["docs/*"]
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.1/rioni-1.0.1-linux-x86_64.tar.gz"
-      sha256 "6dd0a5bf0139c530b6d04e0048dc550af333ed60c55b6b87695636d2085b68b0"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.2/rioni-1.0.2-linux-x86_64.tar.gz"
+      sha256 "5888e70d90fd4972731fccf702a48df850e28d7588ab6093ce07a0f7be50a09e"
       define_method(:install) do
         bin.install "rioni"
         (etc/"rioni/configs").install "configs/rioni.cfg.yml"
         doc.install "README.md"
         doc.install "NOTICE"
         doc.install "LICENSE"
-        doc.install Dir["licenses/*"]
-        doc.install Dir["docs/*"]
+        (doc/"licenses").install Dir["licenses/*"]
+        (doc/"docs").install Dir["docs/*"]
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.1/rioni-1.0.1-linux-arm64.tar.gz"
-      sha256 "bda96ddbe6d7e15924740bb5458b99f17cd8c459cbbe4fe78e58666bf4430f01"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.2/rioni-1.0.2-linux-arm64.tar.gz"
+      sha256 "6c5d05d3be9b7f390ee9ed98b57d500a1ddc788d6bb27d0d8a522dd4a74e48ad"
       define_method(:install) do
         bin.install "rioni"
         (etc/"rioni/configs").install "configs/rioni.cfg.yml"
         doc.install "README.md"
         doc.install "NOTICE"
         doc.install "LICENSE"
-        doc.install Dir["licenses/*"]
-        doc.install Dir["docs/*"]
+        (doc/"licenses").install Dir["licenses/*"]
+        (doc/"docs").install Dir["docs/*"]
       end
     end
   end

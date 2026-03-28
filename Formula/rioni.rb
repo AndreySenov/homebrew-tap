@@ -5,13 +5,13 @@
 class Rioni < Formula
   desc "Rioni is a free and open-source DNS proxy server."
   homepage "https://github.com/AndreySenov/rioni"
-  version "1.0.3"
+  version "1.1.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.3/rioni-1.0.3-darwin-x86_64.tar.gz"
-      sha256 "cd7639ee3930a209a17d158a09eeb636dff362e927f960ab238415deda28a8b8"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.1.0/rioni-1.1.0-darwin-x86_64.tar.gz"
+      sha256 "b146b57a3c73b9c4f26f81c026ff7b33b194650d00f3d7f8264163d4cb821d7c"
 
       define_method(:install) do
         bin.install "rioni"
@@ -24,8 +24,8 @@ class Rioni < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.3/rioni-1.0.3-darwin-arm64.tar.gz"
-      sha256 "7540fc09a14f5a44b110427fa2fc361cc9d0bf69240fe8775c8c601669e895c3"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.1.0/rioni-1.1.0-darwin-arm64.tar.gz"
+      sha256 "4c0a8b398be0058e118946bccb8c8f6043b70a3719b0cbde1922b8bf9c65a310"
 
       define_method(:install) do
         bin.install "rioni"
@@ -41,8 +41,8 @@ class Rioni < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.3/rioni-1.0.3-linux-x86_64.tar.gz"
-      sha256 "fd87b87066568b0eae3794142406720cdb4f7d53b822047535ce79aee6012f02"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.1.0/rioni-1.1.0-linux-x86_64.tar.gz"
+      sha256 "6cf18b7dbf3eba19b7bf1d053deaa476cb4a1196785354b2b540340eb33ac1bc"
       define_method(:install) do
         bin.install "rioni"
         (etc/"rioni/configs").install "configs/rioni.cfg.yml"
@@ -54,8 +54,8 @@ class Rioni < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/AndreySenov/rioni/releases/download/v1.0.3/rioni-1.0.3-linux-arm64.tar.gz"
-      sha256 "594d5dff4cb35cffe81e2afbd9facbdb348e1678ce44786e2dec041ead68c78d"
+      url "https://github.com/AndreySenov/rioni/releases/download/v1.1.0/rioni-1.1.0-linux-arm64.tar.gz"
+      sha256 "b62660a78a2f83c17602827770a30186b92c3307da3c59518c2ad5d66c8c0d25"
       define_method(:install) do
         bin.install "rioni"
         (etc/"rioni/configs").install "configs/rioni.cfg.yml"
@@ -70,10 +70,11 @@ class Rioni < Formula
 
   service do
     environment_variables(
+      RIONI_CONFIG_FILE: /etc/"rioni/configs/rioni.cfg.yml",
       RIONI_SERVER_HTTP_TLS_CERT_FILE: etc/"rioni/tls/rioni.crt",
       RIONI_SERVER_HTTP_TLS_KEY_FILE: etc/"rioni/tls/rioni.key",
     )
-    run [opt_bin/"rioni", "--config", etc/"rioni/configs/rioni.cfg.yml"]
+    run [opt_bin/"rioni"]
     keep_alive true
   end
 
